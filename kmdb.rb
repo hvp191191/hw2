@@ -77,7 +77,45 @@
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+Studio.destroy_all
+Movie.destroy_all
+Actor.destroy_all
+Role.destroy_all
 
+puts "Studio :#{Studio.all.count}"
+puts "Movie:#{Movie.all.count}"
+puts "Actor:#{Actor.all.count}"
+puts "Role:#{Role.all.count}"
+
+new_studio = Studio.new
+new_studio["studio_name"] = "Warner Bros."
+new_studio.save
+puts "Studio :#{Studio.all.count}"
+warner = Studio.find_by({"studio_name"=>"Warner Bros."})
+
+new_movie = Movie.new
+new_movie["title"] = "Batman Begins"
+new_movie["year_released"] = 2005
+new_movie["rated"] = "PG-13"
+# new_movie["studio_id"] = warner["id"]
+new_movie.save
+
+new_movie2 = Movie.new
+new_movie2["title"] = "The Dark Knight"
+new_movie2["year_released"] = 2008
+new_movie2["rated"] = "PG-13"
+new_movie2["studio_id"] = warner["id"]
+new_movie2.save
+
+new_movie3 = Movie.new
+new_movie3["title"] = "The Dark Knight Rises"
+new_movie3["year_released"] = 2012
+new_movie3["rated"] = "PG-13"
+new_movie3["studio_id"] = warner["id"]
+new_movie3.save
+
+puts "Studio :#{Studio.all.count}"
+puts "Movie:#{Movie.all.count}"
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
