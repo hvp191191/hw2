@@ -69,6 +69,11 @@
 
 # Delete existing data, so you'll start fresh each time this script is run.
 # Use `Model.destroy_all` code.
+Studio.destroy_all
+Movie.destroy_all
+Actor.destroy_all
+Role.destroy_all
+
 # TODO!
 
 # Generate models and tables, according to the domain model.
@@ -77,10 +82,6 @@
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
-Studio.destroy_all
-Movie.destroy_all
-Actor.destroy_all
-Role.destroy_all
 
 puts "Studio :#{Studio.all.count}"
 puts "Movie:#{Movie.all.count}"
@@ -294,6 +295,7 @@ puts "Role :#{Role.all.count}"
 puts "Movies"
 puts "======"
 puts ""
+# Query the movies data and loop through the results to display the movies output
 movies = Movie.all
 for movie in movies
     title = movie["title"].ljust(30)
@@ -305,7 +307,6 @@ for movie in movies
   puts "#{title} #{year_released} #{rated} #{studionamefinal}"
 end
 
-# Query the movies data and loop through the results to display the movies output.
 # TODO!
 
 # Prints a header for the cast output
@@ -313,7 +314,18 @@ puts ""
 puts "Top Cast"
 puts "========"
 puts ""
+#Query the cast data and loop through the results to display the cast output for each movie.
 
 
-# Query the cast data and loop through the results to display the cast output for each movie.
+roles = Role.all
+for role in roles
+    movie_id = role["movie_id"]
+    actor_id = role["actor_id"]
+    character_names = role["character_names"].ljust(30)
+    movie = Movie.find_by ({"id" => movie_id})
+    actor = Actor.find_by ({"id" => actor_id})
+    moviename = movie["title"].ljust(30)
+    actorname = actor["name"].ljust(30)
+  puts "#{moviename} #{actorname} #{character_names}"
+end
 # TODO!
