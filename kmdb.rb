@@ -114,6 +114,12 @@ new_movie3["rated"] = "PG-13"
 new_movie3["studio_id"] = warner["id"]
 new_movie3.save
 
+new_studio = Studio.new
+new_studio["studio_name"] = "Warner Bros."
+new_studio.save
+puts "Studio :#{Studio.all.count}"
+warner = Studio.find_by({"studio_name"=>"Warner Bros."})
+
 puts "Studio :#{Studio.all.count}"
 puts "Movie:#{Movie.all.count}"
 # Prints a header for the movies output
